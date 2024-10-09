@@ -4,18 +4,27 @@
  */
 package com.mycompany.postres;
 
+
 /**
  *
  * @author 52999
  */
+
 public class Postres extends javax.swing.JPanel {
+    private Lista listaPostre1;
+    private Lista listaPostre2;
+    private Lista listaPostre3;
 
     /**
      * Creates new form Postres
      */
     public Postres() {
         initComponents();
+        listaPostre1= new Lista();
+        listaPostre2= new Lista();
+        listaPostre3= new Lista();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,6 +62,11 @@ public class Postres extends javax.swing.JPanel {
 
         btnPostre1.setFont(new java.awt.Font("Yu Gothic", 0, 18)); // NOI18N
         btnPostre1.setText("Postre 1");
+        btnPostre1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPostre1ActionPerformed(evt);
+            }
+        });
 
         btnAgregarIng.setFont(new java.awt.Font("Yu Gothic", 0, 10)); // NOI18N
         btnAgregarIng.setText("Agregar ingrediente");
@@ -129,7 +143,20 @@ public class Postres extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
+    private void btnPostre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostre1ActionPerformed
+        // TODO add your handling code here:
+        listaPostre1.imprimir();
+      
+    }//GEN-LAST:event_btnPostre1ActionPerformed
+    
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Postres().setVisible(true);
+            }
+        });
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarIng;
     private javax.swing.JButton btnCambiarNombre;
