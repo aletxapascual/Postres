@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.postres;
+import java.util.ArrayList;
 
 /**
  *
@@ -29,13 +30,14 @@ public class Lista {
         }
     }
     
-    public void imprimir() {
+    public String imprimir() {
+        ArrayList<String> lista = new ArrayList<>();
         Ingrediente actual = primerNodo;
         while (actual != null) {
-            System.out.print(actual.nombre + " "); // Imprimir el nombre del ingrediente
-            actual = actual.siguiente; // Avanzar al siguiente
-        }
-        System.out.println(); // Nueva línea después de imprimir todos los ingredientes
+            lista.add(actual.nombre); 
+            actual = actual.siguiente;
+        } 
+        return ("-") + String.join("\n-", lista);
     }
 }
 
