@@ -3,12 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.postres;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author 52999
  */
 public class Postre extends javax.swing.JFrame {
+    
+    DefaultListModel<String> lista1Model; 
+    DefaultListModel<String> lista2Model; 
+    DefaultListModel<String> lista3Model; 
+    DefaultListModel<String> listaActual;
     
     
     public boolean btnActivadoPostre1= false;
@@ -25,6 +31,11 @@ public class Postre extends javax.swing.JFrame {
      */
     public Postre() {
         initComponents();
+        lista1Model = new DefaultListModel<>();
+        lista2Model = new DefaultListModel<>();
+        lista3Model = new DefaultListModel<>();
+        
+        txtOutput.setModel(lista1Model);
     }
 
     /**
@@ -54,8 +65,6 @@ public class Postre extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         jDialog7 = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtOutput = new javax.swing.JTextArea();
         btnPostre1 = new javax.swing.JButton();
         btnPostre2 = new javax.swing.JButton();
         btnPostre3 = new javax.swing.JButton();
@@ -64,6 +73,8 @@ public class Postre extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         nombrePostre = new javax.swing.JTextField();
         nombreIngrediente = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtOutput = new javax.swing.JList<>();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -236,11 +247,6 @@ public class Postre extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(138, 172, 121));
 
-        txtOutput.setColumns(20);
-        txtOutput.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
-        txtOutput.setRows(5);
-        jScrollPane1.setViewportView(txtOutput);
-
         btnPostre1.setBackground(new java.awt.Color(214, 224, 193));
         btnPostre1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         btnPostre1.setText("Postre 1");
@@ -289,6 +295,11 @@ public class Postre extends javax.swing.JFrame {
         btnEliminar.setBackground(new java.awt.Color(214, 224, 193));
         btnEliminar.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         btnEliminar.setText("Eliminar ingrediente");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         nombrePostre.setBackground(new java.awt.Color(234, 239, 222));
         nombrePostre.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
@@ -310,6 +321,9 @@ public class Postre extends javax.swing.JFrame {
             }
         });
 
+        txtOutput.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
+        jScrollPane2.setViewportView(txtOutput);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -317,7 +331,7 @@ public class Postre extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(12, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnPostre1, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                             .addComponent(btnPostre2, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
@@ -328,31 +342,30 @@ public class Postre extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(nombrePostre, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnAgregarIngrediente, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                            .addComponent(nombreIngrediente))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAgregarIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nombreIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(54, 54, 54)
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
                         .addComponent(btnPostre1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnPostre2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPostre3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(26, 26, 26)
+                        .addComponent(btnPostre3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2))
+                .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
@@ -363,7 +376,7 @@ public class Postre extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCambiar)
                             .addComponent(btnAgregarIngrediente))
-                        .addContainerGap(32, Short.MAX_VALUE))
+                        .addContainerGap(24, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -391,7 +404,7 @@ public class Postre extends javax.swing.JFrame {
        btnPostre2.setBackground(new java.awt.Color(214, 224, 193));
        btnActivadoPostre3= false; 
        btnPostre3.setBackground(new java.awt.Color(214, 224, 193));
-       txtOutput.setText(lista1.imprimir());
+       txtOutput.setModel(lista1Model);
        
     }//GEN-LAST:event_btnPostre1ActionPerformed
 
@@ -402,7 +415,7 @@ public class Postre extends javax.swing.JFrame {
         btnPostre1.setBackground(new java.awt.Color(214, 224, 193));
         btnActivadoPostre3= false; 
         btnPostre3.setBackground(new java.awt.Color(214, 224, 193));
-        txtOutput.setText(lista2.imprimir());
+        txtOutput.setModel(lista2Model);
     }//GEN-LAST:event_btnPostre2ActionPerformed
 
     private void btnPostre3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostre3ActionPerformed
@@ -412,7 +425,7 @@ public class Postre extends javax.swing.JFrame {
         btnPostre2.setBackground(new java.awt.Color(214, 224, 193));
         btnActivadoPostre1= false; 
         btnPostre1.setBackground(new java.awt.Color(214, 224, 193));
-        txtOutput.setText(lista3.imprimir());
+        txtOutput.setModel(lista3Model);
     }//GEN-LAST:event_btnPostre3ActionPerformed
 
     private void btnCambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarActionPerformed
@@ -459,7 +472,7 @@ public class Postre extends javax.swing.JFrame {
     }//GEN-LAST:event_nombrePostreActionPerformed
 
     private void nombreIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreIngredienteActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_nombreIngredienteActionPerformed
 
     private void btnAgregarIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarIngredienteActionPerformed
@@ -477,24 +490,63 @@ public class Postre extends javax.swing.JFrame {
         switch (postreActivado) {
             case 1:
                 lista1.agregar(ingrediente);
+                lista1Model.addElement(ingrediente); 
+                txtOutput.setModel(lista1Model);
                 nombreIngrediente.setText(" ");
-                txtOutput.setText(lista1.imprimir());
+                //txtOutput.addElement(nombreIngrediente.getText().trim());                
+                //txtOutput.setText(lista1.imprimir());
                 break;
             case 2:
                 lista2.agregar(ingrediente);
+                lista2Model.addElement(ingrediente); 
+                txtOutput.setModel(lista2Model);
                 nombreIngrediente.setText(" ");
-                txtOutput.setText(lista2.imprimir());
+                //txtOutput.setText(lista2.imprimir());
                 break;
             case 3:
                 lista3.agregar(ingrediente);
+                lista3Model.addElement(ingrediente); 
+                txtOutput.setModel(lista3Model);
                 nombreIngrediente.setText(" ");
-                txtOutput.setText(lista3.imprimir());
+                //txtOutput.setText(lista3.imprimir());
                 break;
             default:
                 System.out.println("No hay botones activados.");
                 break;
         }
     }//GEN-LAST:event_btnAgregarIngredienteActionPerformed
+       
+    
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int ingredienteSeleccionado = txtOutput.getSelectedIndex();
+        int postreActivado = 0;
+
+        if (btnActivadoPostre1) {
+            postreActivado = 1;
+        } else if (btnActivadoPostre2) {
+            postreActivado = 2;
+        } else if (btnActivadoPostre3) {
+            postreActivado = 3;
+        }
+
+        switch (postreActivado) {
+            case 1:
+                lista1Model.remove(ingredienteSeleccionado); 
+                lista1.eliminar(ingredienteSeleccionado);
+                break;
+            case 2:
+                lista2Model.remove(ingredienteSeleccionado); 
+                lista2.eliminar(ingredienteSeleccionado);
+                break;
+            case 3:
+                lista3Model.remove(ingredienteSeleccionado); 
+                lista3.eliminar(ingredienteSeleccionado);
+                break;
+            default:
+                System.out.println("No hay botones activados.");
+                break;
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -555,10 +607,10 @@ public class Postre extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JTextField nombreIngrediente;
     private javax.swing.JTextField nombrePostre;
-    private javax.swing.JTextArea txtOutput;
+    private javax.swing.JList<String> txtOutput;
     // End of variables declaration//GEN-END:variables
 }

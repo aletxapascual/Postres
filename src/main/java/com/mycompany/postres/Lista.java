@@ -30,6 +30,24 @@ public class Lista {
         }
     }
     
+    public void eliminar(int index) {
+    
+       if (index == 0) {
+        primerNodo = primerNodo.siguiente; // Eliminar el primer nodo
+        return;
+    }
+
+    Ingrediente actual = primerNodo;
+    int contador = 0;
+
+    while (actual != null && contador < index - 1) {
+        actual = actual.siguiente;
+        contador++;
+    }
+
+    actual.siguiente = actual.siguiente.siguiente; 
+    }
+    
     public String imprimir() {
         ArrayList<String> lista = new ArrayList<>();
         Ingrediente actual = primerNodo;
